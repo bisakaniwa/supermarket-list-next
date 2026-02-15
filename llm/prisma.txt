@@ -1,0 +1,2 @@
+Configuração:
+1. https://www.prisma.io/docs/getting-started/prisma-orm/add-to-existing-project/prisma-postgres

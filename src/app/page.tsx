@@ -1,10 +1,26 @@
-import Image from "next/image";
+import { Header } from "@/components/layout/Header";
+import { ItemInput } from "@/components/layout/ItemInput"
+import { ListCard } from "@/components/features/ListCard";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <main className="flex w-full flex-col">
+      <Header />
+
+      <div className="flex w-full justify-center-safe px-5 pr-10">
+        <ItemInput />
+      </div>
+
+      <div className="flex w-full flex-col justify-center-safe px-7 mt-10">
+        <h2 className="text-2xl text-center mb-4">
+          Comprar:
+        </h2>
+
+        <ListCard />
+      </div>
+      {/* <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
+         <Image
           className="dark:invert"
           src="/next.svg"
           alt="Next.js logo"
@@ -60,6 +76,7 @@ export default function Home() {
           </a>
         </div>
       </main>
-    </div>
+    </div> */}
+    </main>
   );
 }
