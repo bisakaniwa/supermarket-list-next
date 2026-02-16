@@ -1,6 +1,6 @@
 {
   "name": "Lista de Supermercado",
-  "short_name": "Lista",
+  "short_name": "Supermercado",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#DFD4C7",
