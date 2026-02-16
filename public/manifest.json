@@ -1,0 +1,15 @@
+{
+  "name": "Lista de Supermercado",
+  "short_name": "Lista",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#DFD4C7",
+  "theme_color": "#DFD4C7",
+  "icons": [
+    {
+      "src": "/icon-light.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
