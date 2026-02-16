@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { IconButton } from "../ui/IconButton";
 import { CirclePlus } from "lucide-react";
-import { addItem } from "@/actions/lists/list";
+import { addItem } from "@/actions/list-actions";
 import { Input } from "../ui/Input";
 
 export const ItemInput = () => {
@@ -13,14 +13,15 @@ export const ItemInput = () => {
     setValue(event.target.value);
   };
 
-  const handleAdd = () => {
-    if (!value.trim()) return;
+  const handleAdd = async () => {
+    if (!value.trim()) return console.warn("valor vazio");
 
-    return addItem({ itemName: value });
+    await addItem({ itemName: value });
+    setValue('');
   };
 
   return (
-    <div className="flex flex-row w-4/6 gap-3 mt-8">
+    <div className="flex flex-row w-full justify-center-safe gap-3 mt-8">
       <Input
         label="Adicione um item:"
         value={value}
