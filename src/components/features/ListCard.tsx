@@ -36,7 +36,7 @@ export const ListCard = async ({ itemsList }: ListCardProps) => {
         })}
       </Suspense>
       {itemsList.length === 0 && (
-        <h4 className="flex justify-center-safe">
+        <h4 className="flex justify-center-safe italic text-contrast">
           Nenhum item encontrado.
         </h4>
       )}

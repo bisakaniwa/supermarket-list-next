@@ -2,6 +2,7 @@ import { getAllItems } from "@/actions/list-actions";
 import { Header } from "@/components/layout/Header";
 import { ItemInput } from "@/components/features/ItemInput"
 import { ListCard } from "@/components/features/ListCard";
+import { ResetButton } from "@/components/ui/ResetButton";
 
 export default async function Home() {
   const itemsList = await getAllItems();
@@ -14,7 +15,11 @@ export default async function Home() {
         <ItemInput />
       </div>
 
-      <h2 className="text-2xl text-center mt-13">
+      <div className="flex justify-end-safe mt-7 mr-5">
+        <ResetButton />
+      </div>
+
+      <h2 className="text-2xl text-center mt-5">
         Comprar:
       </h2>
 

@@ -91,3 +91,14 @@ export const updateItem = async (itemId: string, name: string, quantity: number)
     return { success: false, error: "Falha ao atualizar item.", statusCode: 500 };
   }
 };
+
+export const deleteAllItems = async () => {
+  try {
+    await prisma.item.deleteMany();
+    revalidatePath('/');
+    return { success: true, statusCode: 200 };
+  } catch (error) {
+    console.error("Falha ao deletar todos os itens:", error);
+    return { success: false, error: "Falha ao deletar itens.", statusCode: 500 };
+  }
+};
