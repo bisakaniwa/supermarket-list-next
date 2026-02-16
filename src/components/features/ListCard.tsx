@@ -10,7 +10,7 @@ type ListCardProps = {
 
 export const ListCard = async ({ itemsList }: ListCardProps) => {
   return (
-    <Paper className="w-full bg-card p-3 lg:grid lg:grid-cols-2 lg:gap-0 lg:content-start">
+    <Paper elevation={2} className="w-full bg-card p-3 lg:grid lg:grid-cols-2 lg:gap-0 lg:content-start">
       <Suspense fallback={<ListCardSkeleton />}>
         {itemsList.map((item, index) => {
           const isLeftCol = index % 2 === 0;

@@ -7,6 +7,7 @@ import { toggleItem, deleteItem, updateItem } from "@/actions/list-actions";
 import { useState } from "react";
 import { Modal } from "../ui/Modal";
 import { Input } from "../ui/Input";
+import { QuantityChanger } from "../ui/QuantityChanger";
 
 type ListItemProps = {
   item: Item;
@@ -16,6 +17,7 @@ export const ListItem = ({ item }: ListItemProps) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editName, setEditName] = useState(item.name);
+  const [editQuantity, setEditQuantity] = useState(item.quantity ?? 1);
 
   const handleDelete = async () => {
     await deleteItem(item.id);
@@ -24,7 +26,7 @@ export const ListItem = ({ item }: ListItemProps) => {
 
   const handleEdit = async () => {
     if (editName.trim() !== "") {
-      await updateItem(item.id, editName);
+      await updateItem(item.id, editName, editQuantity);
     }
     setShowEditModal(false);
   };
@@ -34,15 +36,23 @@ export const ListItem = ({ item }: ListItemProps) => {
       <SwipeToReveal
         onDelete={() => setShowDeleteModal(true)}
         onEdit={() => {
-          setEditName(item.name); // Garante que o input comece com o nome atual
+          setEditName(item.name);
+          setEditQuantity(item.quantity ?? 1);
           setShowEditModal(true);
         }}
       >
-        <Checkbox
-          label={item.name}
-          checked={item.checked}
-          onChange={toggleItem.bind(null, item.id)}
-        />
+        <div className="flex items-center justify-between w-full pr-4">
+          <Checkbox
+            label={item.name}
+            checked={item.checked}
+            onChange={toggleItem.bind(null, item.id)}
+          />
+          {(item.quantity ?? 1) > 0 && (
+            <span className="text-main-text text-sm font-medium">
+              {item.quantity}x
+            </span>
+          )}
+        </div>
       </SwipeToReveal>
 
       <Modal
@@ -62,12 +72,20 @@ export const ListItem = ({ item }: ListItemProps) => {
         primaryAction={handleEdit}
         primaryActionLabel="Salvar"
       >
-        <Input
-          value={editName}
-          onChange={(e) => setEditName(e.target.value)}
-          placeholder="Nome do item"
-          autoFocus
-        />
+        <div className="flex flex-col gap-4">
+          <Input
+            value={editName}
+            onChange={(e) => setEditName(e.target.value)}
+            placeholder="Nome do item"
+            label="Nome"
+            autoFocus
+          />
+          <QuantityChanger
+            value={editQuantity}
+            onChange={setEditQuantity}
+            label="Quantidade"
+          />
+        </div>
       </Modal>
     </>
   );

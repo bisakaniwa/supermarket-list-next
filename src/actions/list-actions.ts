@@ -78,11 +78,11 @@ export const deleteItem = async (itemId: string) => {
   }
 };
 
-export const updateItem = async (itemId: string, name: string) => {
+export const updateItem = async (itemId: string, name: string, quantity: number) => {
   try {
     const updatedItem = await prisma.item.update({
       where: { id: itemId },
-      data: { name },
+      data: { name, quantity },
     });
     revalidatePath('/');
     return { success: true, data: updatedItem, statusCode: 200 };
