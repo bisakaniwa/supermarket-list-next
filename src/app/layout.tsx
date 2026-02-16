@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -15,6 +15,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lista de Supermercado",
   description: "Tenha sua lista sempre à mão!",
+  icons: {
+    icon: [
+      { media: '(prefers-color-scheme: light)', url: '/icon-light.svg', type: 'image/svg+xml' },
+      { media: '(prefers-color-scheme: dark)', url: '/icon-dark.svg', type: 'image/svg+xml' },
+    ],
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Lista de Supermercado",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
 };
 
 export default function RootLayout({

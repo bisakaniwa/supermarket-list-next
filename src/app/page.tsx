@@ -16,7 +16,7 @@ export default async function Home() {
       </div>
 
       <div className="flex justify-end-safe mt-7 mr-5">
-        <ResetButton />
+        <ResetButton disabled={!itemsList || itemsList.length === 0} />
       </div>
 
       <h2 className="text-2xl text-center mt-5">
