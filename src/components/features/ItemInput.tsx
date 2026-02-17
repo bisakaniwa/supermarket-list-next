@@ -20,12 +20,19 @@ export const ItemInput = () => {
     setValue('');
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleAdd();
+    }
+  };
+
   return (
     <div className="flex flex-row w-full justify-center-safe gap-3 mt-8">
       <Input
         label="Adicione um item:"
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder="O que está faltando?"
         className="w-full"
       />
