@@ -22,7 +22,7 @@ export const ResetButton = ({ disabled }: ResetButtonProps) => {
       <button
         onClick={() => setIsOpen(true)}
         disabled={disabled}
-        className={`flex items-center gap-2 text-primary text-sm font-medium border border-primary rounded-lg px-3 py-2 transition-colors ${disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-primary/10"
+        className={`flex items-center gap-2 cursor-pointer text-primary text-sm font-medium border border-primary rounded-lg px-3 py-2 transition-colors ${disabled ? "cursor-not-allowed" : "hover:bg-primary/10"
           }`}
       >
         <Plus className="w-5 h-5" />

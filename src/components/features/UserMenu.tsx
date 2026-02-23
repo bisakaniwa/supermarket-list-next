@@ -55,7 +55,7 @@ export default function UserMenu() {
       <MenuDropdown trigger={AvatarTrigger}>
         <Link
           href="/profile"
-          className="flex items-center gap-3 px-4 py-2 text-sm text-left text-main-text hover:bg-gray-100 dark:text-main-text dark:hover:bg-gray-700 transition-colors"
+          className="flex items-center w-full cursor-pointer gap-3 px-4 py-2 text-sm text-left text-main-text hover:bg-gray-100 dark:text-main-text dark:hover:bg-gray-700 transition-colors"
         >
           <CircleUserRound />
           Perfil
@@ -65,7 +65,7 @@ export default function UserMenu() {
         
         <button
           onClick={() => {}}
-          className="flex items-center gap-3 px-4 py-2 text-sm text-left text-main-text hover:bg-gray-100 dark:text-main-text dark:hover:bg-gray-700 transition-colors"
+          className="flex items-center w-full cursor-pointer gap-3 px-4 py-2 text-sm text-left text-main-text hover:bg-gray-100 dark:text-main-text dark:hover:bg-gray-700 transition-colors"
         >
           <UserRoundPlus />
           Adicionar Usuário
@@ -75,7 +75,7 @@ export default function UserMenu() {
 
         <button
           onClick={() => setIsLogoutModalOpen(true)}
-          className="flex items-center gap-3 px-4 py-2 text-sm text-left text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-700 transition-colors"
+          className="flex items-center w-full cursor-pointer gap-3 px-4 py-2 text-sm text-left text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-700 transition-colors"
         >
           <LogOut />
           Logout
@@ -90,7 +90,7 @@ export default function UserMenu() {
           description="Você tem certeza que deseja sair?"
           variant="danger"
           primaryAction={() => signOut({ callbackUrl: '/' })}
-          primaryActionLabel="Logout"
+          primaryActionLabel="Sim, sair"
           secondaryAction={() => setIsLogoutModalOpen(false)}
           secondaryActionLabel="Cancelar"
         />

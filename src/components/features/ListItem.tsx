@@ -8,6 +8,8 @@ import { useState } from "react";
 import { Modal } from "../ui/Modal";
 import { Input } from "../ui/Input";
 import { QuantityChanger } from "../ui/QuantityChanger";
+import { IconButton } from "../ui/IconButton";
+import { Pencil, Trash2 } from "lucide-react";
 
 type ListItemProps = {
   item: Item;
@@ -47,11 +49,32 @@ export const ListItem = ({ item }: ListItemProps) => {
             checked={item.checked}
             onChange={toggleItem.bind(null, item.id)}
           />
-          {(item.quantity ?? 1) > 0 && (
-            <span className="text-main-text text-sm font-medium">
-              {item.quantity}x
-            </span>
-          )}
+          <div className="hidden md:flex items-center gap-2">
+            <IconButton
+              onClick={() => {
+                setEditName(item.name);
+                setEditQuantity(item.quantity ?? 1);
+                setShowEditModal(true);
+              }}
+              aria-label="Editar item"
+              className="text-contrast hover:text-blue-500"
+            >
+              <Pencil className="w-4 h-4" />
+            </IconButton>
+
+            <IconButton
+              onClick={() => setShowDeleteModal(true)}
+              aria-label="Deletar item"
+              className="text-contrast hover:text-red-500 mr-2"
+            >
+              <Trash2 className="w-4 h-4" />
+            </IconButton>
+            {(item.quantity ?? 1) > 0 && (
+              <span className="text-main-text text-sm font-medium">
+                {item.quantity}x
+              </span>
+            )}
+          </div>
         </div>
       </SwipeToReveal>
 

@@ -28,7 +28,6 @@ export default function MenuDropdown({ trigger, children }: MenuDropdownProps) {
 
   return (
     <div className="relative inline-block text-left" ref={menuRef}>
-      {/* Gatilho: gerencia a abertura e fechamento */}
       <button 
         onClick={() => setIsOpen(!isOpen)} 
         className="cursor-pointer focus:outline-none focus:ring-1 focus:ring-contrast rounded-full"
@@ -38,7 +37,6 @@ export default function MenuDropdown({ trigger, children }: MenuDropdownProps) {
         {trigger}
       </button>
 
-      {/* Menu: Fecha automaticamente ao clicar em qualquer item dentro dele */}
       {isOpen && (
         <div 
           onClick={(e) => {
@@ -48,7 +46,7 @@ export default function MenuDropdown({ trigger, children }: MenuDropdownProps) {
           }}
           className="absolute left-0 z-40 w-48 mt-2 origin-top-left bg-background dark:bg-background border border-surface dark:border-header rounded-md shadow-lg outline-none animate-in fade-in slide-in-from-top-2 duration-200"
         >
-          <div className="py-1">
+          <div className="py-1 w-full">
             {children}
           </div>
         </div>

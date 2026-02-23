@@ -55,7 +55,7 @@ export const ItemInput = ({ list }: ItemInputProps) => {
       setValue('');
       setSnackbar({
         isOpen: true,
-        message: "Item adicionado com sucesso!",
+        message: "Item adicionado!",
         variant: "success",
       });
     } catch (error) {

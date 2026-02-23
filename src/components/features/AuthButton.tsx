@@ -15,7 +15,7 @@ export const AuthButton = () => {
   if (status === "unauthenticated" || !session) {
     return (
       <button
-        onClick={() => signIn()}
+        onClick={() => signIn('google')}
         className="cursor-pointer border border-contrast px-4 py-2 mb-1 text-sm font-medium text-white rounded-md hover:bg-gray-700 transition-colors dark:hover:bg-surface focus:outline-none focus:ring-2 focus:ring-contrast focus:ring-offset-2 dark:focus:ring-offset-gray-900"
       >
         Login

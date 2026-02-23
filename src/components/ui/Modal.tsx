@@ -76,14 +76,14 @@ export const Modal = ({
         <div className="flex justify-end gap-3 p-4 bg-surface/50 rounded-b-xl">
           <button
             onClick={secondaryAction || onClose}
-            className="px-4 py-2 text-sm font-medium text-contrast hover:text-text transition-colors"
+            className="cursor-pointer px-4 py-2 text-sm font-medium text-contrast hover:text-text transition-colors"
           >
             {secondaryActionLabel}
           </button>
           {primaryAction && (
             <button
               onClick={primaryAction}
-              className={`px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors ${variant === "danger"
+              className={`cursor-pointer px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors ${variant === "danger"
                 ? "bg-red-500 hover:bg-red-600"
                 : "bg-blue-500 hover:bg-blue-600"
                 }`}

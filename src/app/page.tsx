@@ -1,6 +1,6 @@
 import { getAllItems } from "@/actions/list-actions";
 import { ItemInput } from "@/components/features/ItemInput"
-import { List } from "@/components/features/List";
+import { List } from "@/components/features/List/List";
 import { ResetButton } from "@/components/ui/ResetButton";
 
 export default async function Home() {
