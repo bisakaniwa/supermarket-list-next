@@ -4,8 +4,8 @@ import { InputHTMLAttributes, forwardRef, ReactNode } from "react";
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
-  hint?: string;
-  error?: string;
+  hint?: string | null;
+  error?: string | null;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
 };
