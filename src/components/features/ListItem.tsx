@@ -12,7 +12,7 @@ import { IconButton } from "../ui/IconButton";
 import { Pencil, Trash2 } from "lucide-react";
 
 type ListItemProps = {
-  item: Item;
+  item: Item | Pick<Item, "id" | "name" | "quantity" | "checked" | "notes">;
 };
 
 export const ListItem = ({ item }: ListItemProps) => {

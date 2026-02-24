@@ -1,11 +1,11 @@
-import { Paper } from "../../ui/Paper"
+import { Paper } from "../ui/Paper"
 import { Suspense } from "react";
-import { ListSkeleton } from "../ListSkeleton";
+import { ListSkeleton } from "./ListSkeleton";
 import { Item } from "@prisma/client";
-import { ListItem } from "../ListItem";
+import { ListItem } from "./ListItem";
 
 type ListProps = {
-  itemsList: Item[];
+  itemsList: Item[] | Pick<Item, "id" | "name" | "quantity" | "checked" | "notes">[];
 };
 
 export const List = async ({ itemsList }: ListProps) => {

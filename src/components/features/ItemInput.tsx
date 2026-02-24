@@ -3,16 +3,19 @@
 import { useState } from "react"
 import { IconButton } from "../ui/IconButton";
 import { CirclePlus, Loader2 } from "lucide-react";
-import { addItem } from "@/actions/list-actions";
+import { addItem as addToDB } from "@/actions/list-actions";
 import { Input } from "../ui/Input";
 import { Item } from "@prisma/client";
 import { Snackbar, SnackbarVariant } from "../ui/Snackbar";
+import { getServerSession } from "next-auth";
+import { useItemsStore } from "@/store/useItemsStore";
 
 type ItemInputProps = {
   list: Pick<Item, "id" | "name">[];
 }
 
 export const ItemInput = ({ list }: ItemInputProps) => {
+  const { addItem } = useItemsStore();
   const [value, setValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -45,11 +48,29 @@ export const ItemInput = ({ list }: ItemInputProps) => {
       setLoading(true);
       setError(null);
 
-      const result = await addItem({ name: value });
+      const session = await getServerSession();
+      let result;
 
-      if (!result.success) {
-        setError(result.message);
-        return;
+      if (!session?.user.id) {
+        const item = {
+          name: value.trim(),
+          checked: false,
+          quantity: 1,
+          id: crypto.randomUUID(),
+          createdAt: new Date(),
+          updatedAt: null,
+          userId: '',
+          notes: null,
+        };
+        
+        result = addItem(item);
+      } else {
+        result = await addToDB({ name: value });
+
+        if (!result.success) {
+          setError(result.message);
+          return;
+        }
       }
 
       setValue('');
