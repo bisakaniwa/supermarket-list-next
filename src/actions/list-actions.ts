@@ -7,7 +7,6 @@ import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-
 export const addItem = async (
   { name }: AddItemInput
 ): Promise<ActionResponse<Item>> => {
@@ -42,10 +41,12 @@ export const addItem = async (
 export const getAllItems = async (): Promise<Item[]> => {
   const session = await getServerSession(authOptions);
 
+  if (!session?.user?.id) return [];
+
   try {
     const itemList = await prisma.item.findMany({
       where: {
-        userId: session?.user.id,
+        userId: session.user.id,
       },
       orderBy: [
         { checked: 'asc' },
@@ -91,11 +92,11 @@ export const toggleItem = async (itemId: string) => {
 export const deleteItem = async (itemId: string) => {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user.id) return { success: false, error: "Você não está logado!", statusCode: 401 };
+  if (!session?.user?.id) return { success: false, error: "Você não está logado!", statusCode: 401 };
 
   try {
     await prisma.item.deleteMany({
-      where: { 
+      where: {
         id: itemId,
         userId: session.user.id
       },
@@ -115,7 +116,7 @@ export const updateItem = async (itemId: string, name: string, quantity: number)
 
   try {
     const updatedItem = await prisma.item.updateMany({
-      where: { 
+      where: {
         id: itemId,
         userId: session?.user.id,
       },
@@ -140,7 +141,7 @@ export const deleteAllItems = async () => {
     });
 
     revalidatePath('/');
-    
+
     return { success: true, statusCode: 200 };
   } catch (error) {
     console.error("Falha ao deletar todos os itens:", error);

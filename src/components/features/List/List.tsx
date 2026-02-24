@@ -22,7 +22,7 @@ export const List = async ({ itemsList }: ListProps) => {
           Comprar:
         </h2>
 
-        <Paper elevation={2} className="w-full bg-card p-3 lg:grid lg:grid-cols-2 lg:gap-0 lg:content-start lg:min-h-[65vh]">
+        <Paper elevation={2} className="w-full bg-card p-3 lg:grid lg:grid-cols-2 lg:gap-0 lg:content-start lg:min-h-full">
           <Suspense fallback={<ListSkeleton />}>
             {itemsList.map((item, index) => {
               const isLeftCol = index % 2 === 0;
@@ -35,7 +35,7 @@ export const List = async ({ itemsList }: ListProps) => {
                   className={`relative flex flex-col ${isLeftCol ? "lg:pr-2" : "lg:pl-2"}`}
                 >
                   {showVerticalDivider && isLeftCol && (
-                    <div className="hidden lg:block lg:min-h-[55vh] absolute right-0 top-2 bottom-2 w-[1px] bg-contrast/60" />
+                    <div className="hidden lg:block lg:min-h-[150%] absolute right-0 top-2 bottom-2 w-[1px] bg-contrast/60" />
                   )}
                   <ListItem item={item} />
                   {index < (itemsList.length - 1) && (
